@@ -1,0 +1,11 @@
+﻿.gridView{ background:#91cef4; width:100%;border-spacing:1px; display:table; border-collapse:separate; border-color:gray; }
+.gridView thead th{ background: #0099d4 url(/skin/images/op13_1.gif) repeat-x left bottom; text-align: center; font-size: 14px; color: #fff; font-family: "微软雅黑"; padding: 5px 3px 6px 3px; white-space: nowrap; font-weight: bold; }
+.gridView tbody td{ font-size: 13px; color: #242424; font-family: "微软雅黑"; padding: 1px 8px 1px 8px; height:28px; }
+.gridView tbody tr{ background:#fff; }
+.gridView tbody tr.highBack{ background:#f4fcff; }
+.gridView tbody td span.gridView_edit{ display:inline-block; vertical-align:middle; height:22px; margin-right:3px; }
+.gridView tfoot tr{ background:#fff; }
+.gridView tfoot td{ text-align:center; padding:10px 0; }
+.gridView tfoot td a{display: inline-block; height: 18px; border: 1px #2276d6 solid; background: #2094d1; padding: 0px 6px; font-size: 12px; color: #fff; margin-left: 5px; font-family: "宋体"; text-decoration: none; cursor:pointer; }
+.gridView tfoot td span{ font-size:12px; margin:0 5px; }
+.gridView tfoot td select{ height:28px; margin:0 5px; vertical-align:middle; line-height:20px; }
