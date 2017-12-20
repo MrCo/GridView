@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8"/>
+      <title>GridView</title>
+      <!-- 引入皮肤样式 -->
+      <link href="css/gridview.css" rel="stylesheet">        
+  </head>
+  <body>
+        <div id="grid"></div>        
+        <!-- 引入jQuery类库  -->
+        <script src="scripts/jquery.js"></script>    
+        <!--引入gridview类库 -->
+        <script src="scripts/gridview.js"></script>
+        <script>
+            $(function(){
+                GridView({
+                    container: $('#grid'),
+                    //主键ID，如果不设置将会导致行更新操作时获取不到主键ID
+                    dataKeyID: 'id',
+                    dataSource: [
+                        { id: '006', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '007', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '008', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '009', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '010', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '006', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '007', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '008', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '009', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '010', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' },
+                        { id: '011', name: "张三", age: "47", sex: '男', address: "重庆市", income: '100W' }
+                    ],
+                    columns: [
+                        { name: '系统编号', field: 'id', order: 0, width: 100, titleAlign: 'center', contentAlign: 'left', display: '' },
+                        { name: '年龄', field: 'age', order: 2, width: 60, titleAlign: 'center', contentAlign: 'center', link: '/main.html?key={id}' },
+                        { name: '性别', field: 'sex', order: 4, width: 120, titleAlign: 'center', contentAlign: 'center' },
+                        { name: '地址', field: 'address', order: 3, width: 160, titleAlign: 'center', contentAlign: 'center' },
+                        { name: '姓名', field: 'name', order: 1, width: 120, titleAlign: 'center', contentAlign: 'center' },
+                        { name: '收入', field: 'income', order: 5, width: 180, titleAlign: 'center', contentAlign: 'center' },
+                        { name: '编辑', order: 6, width: 120, titleAlign: 'center', contentAlign: 'center' }
+                    ],
+                    editColumn: [
+                        { name: '删除', type: 'delete', action: '/main.ashx?key={id}', after: '<span>|</span>', visible: true },
+                        {
+                            name: '通过', type: 'common', action: '/main.ashx?key={id}', after: '<span>|</span>', clickCallback: function (actionType, actionURL) {
+                                var _$this = this;
+                                alert(_$this.attr('action'));
+                            }
+                        },
+                        {
+                            name: '更新',
+                            type: 'update',
+                            action: '/main.ashx',
+                            columns: [
+                                { rowIndex: 1, type: 'hidden', name: '' },
+                                { rowIndex: 2, type: 'text', name: 'id' },
+                                { rowIndex: 3, type: 'text', name: 'name' },
+                                { rowIndex: 4, type: 'text', name: 'name' },
+                                { rowIndex: 5, type: 'text', name: 'name' },
+                                { rowIndex: 6, type: 'text', name: 'name' },
+                                { rowIndex: 7, type: 'text', name: 'name' }
+                            ],
+                            after: '<span>|</span>',
+                            append: '<font color="orange">更改</font>',
+                            saveAppend: '<font color="green">保存</font>',
+                            clickCallback: function (actionType, actionURL) {
+                                return true;  //返回true时，行内会执行colums配置的编辑样式，false时将会被忽略
+                            }
+                        },
+                        {
+                            name: '详情', type: 'common', action: '/detial.html?key={id}&name={name}', visible: function (data) {
+                            //console.log(data);
+                            return false;
+                        }, formatCallback: function (data) {
+                            return '<font color="#d2691e">详情</font>'
+                        }, clickCallback: function (actionType, actionURL) {
+                            var _$this = this;
+                            alert(_$this.text());
+                        }
+                        }
+                    ],
+                    //行编辑时的回调事件
+                    editUpdateCallback: function (datakey, editData, dataSource) {
+                        console.log(dataSource)
+                        //console.log(datakey);
+                    }
+                });
+            });            
+        </script>
+  </body>
+</html>

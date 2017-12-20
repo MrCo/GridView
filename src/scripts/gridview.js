@@ -19,7 +19,7 @@
             hidenHead: false,
             //是否为组合表头
             groupHead: {
-                isGroup: true,
+                isGroup: false,
                 template: $('#gridview_head').html()
             },
             //checkbox是否为单选
